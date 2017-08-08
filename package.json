@@ -2,7 +2,6 @@
   "name": "ccas-auto-sales-api",
   "version": "0.0.1",
   "description": "Simple node api",
-  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -15,6 +14,11 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
+    "mockgoose": "^7.3.3",
     "mongoose": "^4.11.6"
+  },
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0"
   }
 }
