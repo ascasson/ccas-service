@@ -6,7 +6,7 @@ const createOrder = (orderData) => {
     return new Promise((resolve, reject) => {
         new Order(orderData).save()
         .then((order) => {
-            const orderPlaced = `./orders/order-${order._id}.json`;
+            const orderPlaced = `./orders/order-${order.order}.json`;
             const jsonOrder = JSON.stringify(order);
 
             //Checking existence of the orders dir

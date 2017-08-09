@@ -26,7 +26,8 @@ describe('Orders', () => {
             make: 'Ferrari',
             model: 'stuff',
             package: 'awesome',
-            customer_id: Math.random()
+            customer_id: Math.floor(Math.random() * 100000) + 1,
+            order: Math.floor(Math.random() * 100000) + 1  
         })
         .then((res) => {
             expect(res.status).to.eql(200);
@@ -52,8 +53,8 @@ describe('Orders', () => {
                     make: 'Maserati',
                     model: 'stuff',
                     package: 'awesome',
-                    customer_id: Math.random(),
-                    order: Math.random()
+                    customer_id: Math.floor(Math.random() * 100000) + 1,
+                    order: Math.floor(Math.random() * 100000) + 1 
                 })
                 .then((res) => {
                     expect(res.status).to.eql(200);
