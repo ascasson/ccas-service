@@ -4,24 +4,17 @@ const ordersController = require('../controllers/order-controller');
 
 const ordersRouter = module.exports = new Router;
 
-const orderExample = {
-    make: 'Ferrari',
-    model: '430',
-    package: 'The best',
-    customer_id: 12345
-};
-
 ordersRouter.get('/orders', (req, res, next) => {
-    console.log('Fetching orders')
     ordersController.fetchAllOrders()
-    .then(order => res.json(order))
+    .then(orders => res.json(orders))
     .catch(next);
 });
 
 ordersRouter.post('/order', (req, res, next) => {
-    console.log('Creating order');
-    // Includes an example set of data
-    ordersController.createOrder(orderExample)
-    .then(order => res.json(order))
+    ordersController.createOrder(req.body)
+    .then((order) => {
+        const urlDownload = `http://ccsa-sales.com/orders/download/order-${order.order}.json`
+        res.status(200).json(urlDownload);
+    })
     .catch(next);
 });

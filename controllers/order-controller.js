@@ -1,21 +1,38 @@
+const fs = require('fs');
 const Order = require('../models/order-model');
 const httpErrors = require('http-errors');
 
-// TODO: Testing this module
 const createOrder = (orderData) => {
-    console.log('You created an order!');
     return new Promise((resolve, reject) => {
         new Order(orderData).save()
-        .then(order => resolve(order))
+        .then((order) => {
+            const orderPlaced = `./orders/order-${order._id}.json`;
+            const jsonOrder = JSON.stringify(order);
+
+            //Checking existence of the orders dir
+            fs.stat('orders/', (err, stats) => {
+                if (err) {
+                    fs.mkdir('orders', (err) => {
+                        fs.writeFile(orderPlaced, jsonOrder, (err) => {
+                            if (err) throw err;
+                            resolve(order);
+                        });
+                    });
+                } else {
+                    fs.writeFile(orderPlaced, jsonOrder, (err) => {
+                        if (err) throw err;
+                        resolve(order);
+                    });
+                }
+            });
+        })
         .catch(err => reject(httpErrors(400, err.message)));
     });
 }
 
-// TODO: Testing this module
 const fetchAllOrders = () => {
-    console.log('You fetched all orders!');
     return new Promise((resolve, reject) => {
-        Order.find({make: 'Ferrari'})
+        Order.find({})
         .then(resolve)
         .catch(err => reject(httpErrors(404, err.message)));
     });

@@ -6,6 +6,7 @@ npm-debug.log*
 
 # Data
 db
+orders
 
 # Dependency directories
 node_modules/
