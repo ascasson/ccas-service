@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Simple node api",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/mocha/bin/mocha ",
     "start": "node server.js",
     "mongo-start": "mongod --dbpath=./db"
   },
@@ -18,7 +18,10 @@
     "http-errors": "^1.6.2",
     "mockgoose": "^7.3.3",
     "mongoose": "^4.11.6",
-    "q": "^1.5.0"
+    "q": "^1.5.0",
+    "superagent": "^3.5.2",
+    "superagent-promise": "^1.1.0",
+    "superagent-promise-plugin": "^3.2.0"
   },
   "devDependencies": {
     "chai": "^4.1.1",
