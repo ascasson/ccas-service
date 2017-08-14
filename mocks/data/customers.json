@@ -1,0 +1,33 @@
+{
+    "customers" : [
+        {
+            "_id": 12345,
+            "first_name": "Amanda",
+            "last_name": "Johnson",
+            "address": {
+                "street": "12035 32nd Ave NE",
+                "city": "Seattle",
+                "state_province": "Washington",
+                "country": "United States"
+            },
+            "orders": [
+                { 
+                    "id": 1,
+                    "supplier": "ACME Autos"
+                }
+            ]
+        },
+        {
+            "_id": 54321,
+            "first_name": "Vladdy",
+            "last_name": "Putin",
+            "address": {
+                "street": " 123 Super Cool Street",
+                "city": "Omsk",
+                "state_province": "Siberia",
+                "country": "Russia"
+            },
+            "orders": []
+        }
+    ]
+}

@@ -27,7 +27,7 @@ describe('Orders', () => {
             model: 'stuff',
             package: 'awesome',
             customer_id: Math.floor(Math.random() * 100000) + 1,
-            order: Math.floor(Math.random() * 100000) + 1  
+            order_test: Math.floor(Math.random() * 100000) + 1  
         })
         .then((res) => {
             expect(res.status).to.eql(200);
