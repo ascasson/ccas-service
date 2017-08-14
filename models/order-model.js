@@ -8,7 +8,8 @@ const orderSchema = mongoose.Schema({
     model: {type: String, required: true},
     package: {type: String, required: true},
     customer_id: {type: Number, required: true},
-    order_id: {type: Number, required: true}
+    supplier: {type: String, required: true},
+    supplier_order_id: {type: Number, required: true}
 });
 
 module.exports = mongoose.model('Order', orderSchema);
