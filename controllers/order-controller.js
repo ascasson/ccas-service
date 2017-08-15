@@ -4,15 +4,15 @@ const httpErrors = require('http-errors');
 
 const createOrder = (orderData) => {
     return new Promise((resolve, reject) => {
-        //1. Get supplier_order_id
-        
+        //1. Get supplier and supplier_order_id
+
         //2. Create new order in the database
         new Order(orderData).save()
         .then((order) => {
             const orderPlaced = `./orders/order-${order.order}.json`;
             const jsonOrder = JSON.stringify(order);
 
-            //Checking existence of the orders directory
+            //Checking existence of the orders directory, used for this implementation only
             fs.stat('orders/', (err, stats) => {
                 if (err) {
                     fs.mkdir('orders', (err) => {
