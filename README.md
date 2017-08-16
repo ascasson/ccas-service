@@ -24,3 +24,9 @@ Running tests is simple. Mock servers are provided for supplier API calls. Run t
 
     npm test
 
+## Orders
+In this case, orders needed to be generated as json entries. When traditional POST requests are made to create a new order, an 'orders'
+directory is created if none exists, and any new orders are stored in the filesytem. This is done purely for simplicity and demonstration of
+expected outputs.
+
+When tests are run, the directory is created, the orders are created, and then the directory and its contents are removed afterwards.
