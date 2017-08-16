@@ -30,3 +30,15 @@ directory is created if none exists, and any new orders are stored in the filesy
 expected outputs.
 
 When tests are run, the directory is created, the orders are created, and then the directory and its contents are removed afterwards.
+
+## Assumptions
+I made some basic assumptions primarily about customers:
+- It was assumed that customers would have already registered with the user-client and their customerId's would have been available already via an existing user model.
+- It was assumed that, while customers could potentially order more than one vehicle, only a single order would be placed at a time.
+
+## What's Next?
+There is plenty that needs expanding in this existing service, but some aspects to dive into near term would include:
+- Dedicated configuration to handle environment variables and various build environments (Note: for simplicity and time constraints, some sensitive keys were hardcoded in modules)
+- Securing the GET /orders route for internal use only, perhaps through the use of JSON Web Tokens and/or Sessions.
+- Improve error handling
+- Validating supplier models and packages, despite the user-client likely providing its own validation before users submit an order
