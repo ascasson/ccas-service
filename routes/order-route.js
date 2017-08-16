@@ -19,7 +19,6 @@ ordersRouter.post('/order', (req, res, next) => {
         return res.status(400).json('Cannot ship to location');
     }
     if(supplierModuleName === 'No supplier') {
-        console.log('wow')
         return res.status(400).json('Bad request');
     }
     supplierController[supplierModuleName](req.body)
