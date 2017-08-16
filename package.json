@@ -5,6 +5,8 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha ",
     "start": "node server.js",
+    "acme": "node ./mocks/servers/acme-server.js",
+    "rainier": "node ./mocks/servers/rainier-server.js",
     "mongo-start": "mongod --dbpath=./db"
   },
   "author": "Anthony Casson",

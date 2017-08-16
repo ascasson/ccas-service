@@ -114,6 +114,23 @@ describe('Orders', () => {
         })
     });
 
+    describe('unshippable customer address', () => {
+        it('should create a new order and return a url', (done) => {
+            request.post(`${baseUrl}/order`)
+                .send({
+                    make: 'ACME Autos',
+                    package: 'awesome',
+                    customer_id: 54321
+                })
+                .then(done)
+                .catch((err) => {
+                    expect(err.status).to.eql(400);
+                    expect(err.message).to.eql('Bad Request');
+                    done();
+                });
+        })
+    });
+
     describe('GET all orders', () => {
         it('should GET all orders', (done) => {
             request.get(`${baseUrl}/orders`)
