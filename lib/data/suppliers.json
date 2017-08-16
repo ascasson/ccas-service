@@ -1,8 +1,10 @@
 {
     "ACME Autos": {
-        "orderModule": "acmeOrder"
+        "orderModule": "acmeOrder",
+        "models": ["anvil", "wile", "roadrunner"]
     },
     "Rainier Transportation Solutions": {
-        "orderModule": "rainierOrder"
+        "orderModule": "rainierOrder",
+        "models": ["pugetsound", "olympic"]
     }
 }

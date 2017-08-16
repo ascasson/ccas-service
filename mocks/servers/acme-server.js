@@ -6,7 +6,6 @@ const apiKeyAccept = 'cascade.53bce4f1dfa0fe8e7ca126f91b35d3a6';
 
 const handleError = require('../../lib/handle-error');
 
-//environment
 const port = 3050
 
 const app = express();
