@@ -13,9 +13,9 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.post('/acme/api/v45.1', function (req, res) {
+app.post('/acme/api/v45.1/order', function (req, res) {
     if (req.headers['x-api-key'] === apiKeyAccept) {
-        return res.send('hello from the acme server')
+        return res.json({order: Math.floor(Math.random() * 100000) + 1});
     }
     res.status(401).send('You are not allowed access to this resource.');
 })

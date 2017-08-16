@@ -19,7 +19,7 @@ describe('Orders', () => {
 
     before((done) => {
         fs.mkdir('orders', (err) => {
-            console.log('made the directory')
+            console.log('Orders directory created')
         });
         request.post(`${baseUrl}/order`)
         .send({
@@ -34,7 +34,7 @@ describe('Orders', () => {
         })
         .catch(done);
     });
-    // after all tests have run
+
     after((done) => {
         Order.remove({}, (err) => {
         rimraf('orders', (err) => {
@@ -66,7 +66,7 @@ describe('Orders', () => {
         it('should create a new order and return a url', (done) => {
             request.post(`${baseUrl}/order`)
                 .send({
-                    make: 'Rainier Transportation Solutions',
+                    make: 'ACME Autos',
                     model: 'stuff',
                     package: 'awesome',
                     customer_id: Math.floor(Math.random() * 100000) + 1

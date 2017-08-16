@@ -7,6 +7,9 @@ const suppliers = require('../lib/data/suppliers');
 const rainierBaseUrl = 'http://localhost:3051/rainier/v10.0';
 const rainierStorefront = 'ccas-bb9630c04f';
 
+const acmeBaseUrl = 'http://localhost:3050/acme/api/v45.1'
+const acmeKey = 'cascade.53bce4f1dfa0fe8e7ca126f91b35d3a6'
+
 superagentPromisePlugin.Promise = PromiseSuper;
 
 const supplierCheck = (make) => {
@@ -17,10 +20,25 @@ const supplierCheck = (make) => {
     }
 }
 
-//2. Function for getting order from ACME
-    // POST an order using api_key
+const acmeOrder =(orderDetails) => {
+    return new Promise((resolve, reject) => {
+        request.post(`${acmeBaseUrl}/order`)
+            .set('X-API-Key', acmeKey)
+            .set('Accept', 'application/x-www-form-urlencoded')
+            .send({
+                model: orderDetails.model,
+                package: orderDetails.package
+            })
+            .then((res) => {
+                resolve(res.body.order);
+            })
+            .catch((err) => {
+                reject(err);
+            })
+        });
+}
 
-const createRainierOrder = (orderDetails) => {
+const rainierOrder = (orderDetails) => {
     return new Promise((resolve, reject) => {
         request.get(`${rainierBaseUrl}/nonce_token?storefront=${rainierStorefront}`)
             .then((res) => {
@@ -34,7 +52,7 @@ const createRainierOrder = (orderDetails) => {
                         resolve(res.body.order_id);
                     })
                     .catch((err) => {
-                        reject(err.status);
+                        reject(err);
                     })
             })
             .catch((err) => {
@@ -43,5 +61,6 @@ const createRainierOrder = (orderDetails) => {
     });
 }
 
-module.exports.rainierOrder = createRainierOrder;
+module.exports.rainierOrder = rainierOrder;
+module.exports.acmeOrder = acmeOrder;
 module.exports.supplierCheck = supplierCheck;
