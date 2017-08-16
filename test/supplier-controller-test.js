@@ -1,12 +1,11 @@
-const mongoose = require('mongoose');
 const fs = require('fs');
-const rimraf = require('rimraf');
 
 const expect = require('chai').expect;
 const Promise = require('q');
 const request = require('superagent');
 const superagentPromisePlugin = require('superagent-promise-plugin');
 const supplierController = require('../controllers/supplier-controller');
+
 const rainierServer = require('../mocks/servers/rainier-server');
 const acmeServer = require('../mocks/servers/acme-server');
 
@@ -17,10 +16,10 @@ const rainierBaseUrl = 'http://localhost:3051/rainier/v10.0';
 superagentPromisePlugin.Promise = Promise;
 
 const exampleOrder = {
-        make: 'NewRide',
-        model: 'Great',
-        package: 'awesome',
-        customer_id: Math.floor(Math.random() * 100000) + 1,
+        make: 'ACME Autos',
+        model: 'anvil',
+        package: 'std',
+        customer_id: 12345,
     }
 
 describe('Supplier controller', () => {

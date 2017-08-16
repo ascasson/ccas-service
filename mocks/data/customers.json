@@ -1,7 +1,8 @@
 {
     "customers" : [
         {
-            "_id": 12345,
+            "_id": 29837489273424282934,
+            "customer_id": 12345,
             "first_name": "Amanda",
             "last_name": "Johnson",
             "address": {
@@ -18,7 +19,8 @@
             ]
         },
         {
-            "_id": 54321,
+            "_id": 20934982735872935629,
+            "customer_id": 54321,
             "first_name": "Vladdy",
             "last_name": "Putin",
             "address": {

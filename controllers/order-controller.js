@@ -4,9 +4,7 @@ const httpErrors = require('http-errors');
 
 const createOrder = (orderData) => {
     return new Promise((resolve, reject) => {
-        //1. Get supplier and supplier_order_id
 
-        //2. Create new order in the database
         new Order(orderData).save()
         .then((order) => {
             const orderPlaced = `./orders/order-${order._id}.json`;
