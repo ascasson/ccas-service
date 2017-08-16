@@ -9,7 +9,7 @@ const createOrder = (orderData) => {
         //2. Create new order in the database
         new Order(orderData).save()
         .then((order) => {
-            const orderPlaced = `./orders/order-${order.order}.json`;
+            const orderPlaced = `./orders/order-${order._id}.json`;
             const jsonOrder = JSON.stringify(order);
 
             //Checking existence of the orders directory, used for this implementation only

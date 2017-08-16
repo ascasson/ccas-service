@@ -8,6 +8,7 @@ const Promise = require('q');
 const request = require('superagent');
 const superagentPromisePlugin = require('superagent-promise-plugin');
 const server = require('../server');
+const rainierServer = require('../mocks/servers/rainier-server');
 
 const port = process.env.PORT || 3000;
 const baseUrl = `localhost:${port}`;
@@ -17,17 +18,16 @@ superagentPromisePlugin.Promise = Promise;
 describe('Orders', () => {
 //begin parent block
     // do before the tests begin
-    beforeEach((done) => {
+    before((done) => {
         fs.mkdir('orders', (err) => {
             console.log('made the directory')
         });
         request.post(`${baseUrl}/order`)
         .send({
-            make: 'Ferrari',
-            model: 'stuff',
-            package: 'awesome',
-            customer_id: Math.floor(Math.random() * 100000) + 1,
-            order_test: Math.floor(Math.random() * 100000) + 1  
+            make: 'Rainier',
+            model: 'olympic',
+            package: 'mtn',
+            customer_id: Math.floor(Math.random() * 100000) + 1
         })
         .then((res) => {
             expect(res.status).to.eql(200);
@@ -36,7 +36,7 @@ describe('Orders', () => {
         .catch(done);
     });
     // after all tests have run
-    afterEach((done) => {
+    after((done) => {
         Order.remove({}, (err) => {
         rimraf('orders', (err) => {
             console.log('Orders directory removed')
@@ -45,18 +45,17 @@ describe('Orders', () => {
         });
     });
 
-    // test POST orders route
-    describe('/POST order', () => {
-        it('should POST an order', (done) => {
+    describe('POST new Rainier order', () => {
+        it('should create a new order and return a url', (done) => {
             request.post(`${baseUrl}/order`)
                 .send({
-                    make: 'Maserati',
+                    make: 'Rainier',
                     model: 'stuff',
                     package: 'awesome',
-                    customer_id: Math.floor(Math.random() * 100000) + 1,
-                    order: Math.floor(Math.random() * 100000) + 1 
+                    customer_id: Math.floor(Math.random() * 100000) + 1
                 })
                 .then((res) => {
+                    expect(res.body.includes('http')).to.eql(true);
                     expect(res.status).to.eql(200);
                     done();
                 })
@@ -64,34 +63,31 @@ describe('Orders', () => {
         });
     });
 
-     // test GET orders route
-    describe('/GET orders', () => {
-        it('should GET all orders and return a success status', (done) => {
-            request.get(`${baseUrl}/orders`)
+    describe('POST new ACME Autos order', () => {
+        it('should create a new order and return a url', (done) => {
+            request.post(`${baseUrl}/order`)
+                .send({
+                    make: 'ACME Autos',
+                    model: 'stuff',
+                    package: 'awesome',
+                    customer_id: Math.floor(Math.random() * 100000) + 1
+                })
                 .then((res) => {
-                    expect(res.status).to.equal(200);
+                    expect(res.body.includes('http')).to.eql(true);
+                    expect(res.status).to.eql(200);
                     done();
                 })
                 .catch(done);
-        });
+        })
     });
 
-    describe('/GET orders', () => {
-        it('should GET all orders with a first index make value equal to Ferrari', (done) => {
+    describe('GET all orders', () => {
+        it('should GET all orders', (done) => {
             request.get(`${baseUrl}/orders`)
                 .then((res) => {
-                    expect(res.body[0].make).to.eql('Ferrari');
-                    done();
-                })
-                .catch(done);
-        });
-    });
-
-    describe('/GET orders', () => {
-        it('should GET all orders as an array with length of 3', (done) => {
-            request.get(`${baseUrl}/orders`)
-                .then((res) => {
-                    expect(res.body.length).to.eql(1);
+                    expect(res.body[0].make).to.equal('Rainier');
+                    expect(res.body.length).to.equal(3);
+                    expect(res.status).to.eql(200);
                     done();
                 })
                 .catch(done);
