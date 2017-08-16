@@ -63,10 +63,10 @@ describe('Orders', () => {
     });
 
     describe('unsuccessful POST new Rainier order', () => {
-        it('should create a new order and return a url', (done) => {
+        it('should return a bad request error', (done) => {
             request.post(`${baseUrl}/order`)
                 .send({
-                    model: 'stuff',
+                    model: 'olympic',
                     package: 'awesome',
                     customer_id: 12345
                 })
@@ -102,7 +102,7 @@ describe('Orders', () => {
             request.post(`${baseUrl}/order`)
                 .send({
                     make: 'ACME Autos',
-                    package: 'awesome',
+                    package: 'elite',
                     customer_id: 12345
                 })
                 .then(done)
@@ -115,11 +115,11 @@ describe('Orders', () => {
     });
 
     describe('unshippable customer address', () => {
-        it('should create a new order and return a url', (done) => {
+        it('should return a bad request error', (done) => {
             request.post(`${baseUrl}/order`)
                 .send({
                     make: 'ACME Autos',
-                    package: 'awesome',
+                    package: 'std',
                     customer_id: 54321
                 })
                 .then(done)
