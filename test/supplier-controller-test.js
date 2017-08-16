@@ -24,6 +24,14 @@ const exampleOrder = {
 
 describe('Supplier Controller modules', () => {
 
+    describe('Check the supplier', () => {
+        it('should return a supplier module name', (done) => {
+            const supplierName = supplierController.supplierCheck('Rainier Transportation Solutions');
+            expect(supplierName).to.eql('rainierOrder');
+            done();
+        })
+    });
+
     describe('Create an order with Rainier', () => {
         it('should respond with a supplier order id', (done) => {
             supplierController.rainierOrder(exampleOrder)
@@ -35,5 +43,5 @@ describe('Supplier Controller modules', () => {
                 .catch(done)
         });
     });
-    
+
 });

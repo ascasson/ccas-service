@@ -16,15 +16,14 @@ const baseUrl = `localhost:${port}`;
 superagentPromisePlugin.Promise = Promise;
 
 describe('Orders', () => {
-//begin parent block
-    // do before the tests begin
+
     before((done) => {
         fs.mkdir('orders', (err) => {
             console.log('made the directory')
         });
         request.post(`${baseUrl}/order`)
         .send({
-            make: 'Rainier',
+            make: 'Rainier Transportation Solutions',
             model: 'olympic',
             package: 'mtn',
             customer_id: Math.floor(Math.random() * 100000) + 1
@@ -49,7 +48,7 @@ describe('Orders', () => {
         it('should create a new order and return a url', (done) => {
             request.post(`${baseUrl}/order`)
                 .send({
-                    make: 'Rainier',
+                    make: 'Rainier Transportation Solutions',
                     model: 'stuff',
                     package: 'awesome',
                     customer_id: Math.floor(Math.random() * 100000) + 1
@@ -67,7 +66,7 @@ describe('Orders', () => {
         it('should create a new order and return a url', (done) => {
             request.post(`${baseUrl}/order`)
                 .send({
-                    make: 'ACME Autos',
+                    make: 'Rainier Transportation Solutions',
                     model: 'stuff',
                     package: 'awesome',
                     customer_id: Math.floor(Math.random() * 100000) + 1
@@ -85,7 +84,7 @@ describe('Orders', () => {
         it('should GET all orders', (done) => {
             request.get(`${baseUrl}/orders`)
                 .then((res) => {
-                    expect(res.body[0].make).to.equal('Rainier');
+                    expect(res.body[0].make).to.equal('Rainier Transportation Solutions');
                     expect(res.body.length).to.equal(3);
                     expect(res.status).to.eql(200);
                     done();

@@ -1,0 +1,8 @@
+{
+    "ACME Autos": {
+        "orderModule": "acmeOrder"
+    },
+    "Rainier Transportation Solutions": {
+        "orderModule": "rainierOrder"
+    }
+}

@@ -12,7 +12,9 @@ ordersRouter.get('/orders', (req, res, next) => {
 });
 
 ordersRouter.post('/order', (req, res, next) => {
-    supplierController.rainierOrder(req.body)
+    const supplierModuleName = supplierController.supplierCheck(req.body.make);
+    
+    supplierController[supplierModuleName](req.body)
         .then((data) => {
             req.body.supplier_order_id = data;
             orderController.createOrder(req.body)
